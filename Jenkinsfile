@@ -28,7 +28,7 @@ pipeline {
                   nexusVersion: 'nexus3',
                   protocol: 'http',
                   //nexusUrl: '172.31.39.229:8081',
-                  nexusUrl: 'http://adt-nexus.easyvista-training.com:8081',
+                  nexusUrl: 'adt-nexus.easyvista-training.com:8081',
                   groupId: 'QA',
                   version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                   repository: 'adt-mjose',
