@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Fetch Code') {
             steps {
-//                git branch: 'vp-rem', url: 'https://github.com/devopshydclub/vprofile-repo.git'
-                git branch: 'master', url: 'https://github.com/toshuomj/vprofile-repo.git'
+                git branch: 'vp-rem', url: 'https://github.com/devopshydclub/vprofile-repo.git'
             }
         }
         stage('BUILD') {
@@ -37,11 +36,11 @@ pipeline {
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
-//            post {
-//                always {
-//                    recordIssues enabledForFailure: true, tool: checkStyle()
-//                }
-//            }
+            post {
+                always {
+                    recordIssues enabledForFailure: true, tools: checkStyle()
+                }
+            }
         }
         stage("UploadArtifact"){
             steps{
