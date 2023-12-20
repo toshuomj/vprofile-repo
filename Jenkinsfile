@@ -22,6 +22,26 @@ pipeline {
                 }
             }
         }
+        stage('TEST') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+                }
+            }
+        }
+        stage('Checkstyle Analysis'){
+            steps {
+                sh 'mvn checkstyle:checkstyle'
+            }
+            post {
+                always {
+                    recordIssues enabledForFailure: true, tool: checkStyle()
+                }
+            }
+        }
         stage("UploadArtifact"){
             steps{
                 nexusArtifactUploader(
